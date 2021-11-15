@@ -1,0 +1,31 @@
+Mon Nov 15 13:22:59 CET 2021 : Serwer sieciowy Apache Derby - 10.14.2.0 - (1828579) uruchomiony i gotowy do zaakceptowania po³¹czeñ na porcie 1527 w {3} 
+----------------------------------------------------------------
+Mon Nov 15 13:22:59 CET 2021:
+ Uruchamianie wersji The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579) systemu Derby: instancja a816c00e-017d-238c-ef55-0000119d0d19
+w katalogu bazy danych E:\Roboczy\AdamPor\LokacjaDataBase\testowy sun.misc.Launcher$AppClassLoader@6f94fa3e 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_131-b11
+user.dir=E:\Roboczy\AdamPor\db-derby-10.14.2.0-lib
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=E:\Roboczy\AdamPor\LokacjaDataBase
+Uruchomiono program ³aduj¹cy klasê bazy danych - derby.database.classpath=''
+----------------------------------------------------------------
+Mon Nov 15 13:23:14 CET 2021:
+Wy³¹czanie instancji a816c00e-017d-238c-ef55-0000119d0d19
+Mon Nov 15 13:23:14 CET 2021 Thread[DRDAConnThread_2,5,main] (DATABASE = testowy), (DRDAID = {2}), Baza danych 'testowy' zosta³a wy³¹czona.
+----------------------------------------------------------------
+Mon Nov 15 13:25:51 CET 2021:
+ Uruchamianie wersji The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579) systemu Derby: instancja 6ede40af-017d-238c-ef55-0000119d0d19
+w katalogu bazy danych E:\Roboczy\AdamPor\LokacjaDataBase\testowy sun.misc.Launcher$AppClassLoader@6f94fa3e 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_131-b11
+user.dir=E:\Roboczy\AdamPor\db-derby-10.14.2.0-lib
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=E:\Roboczy\AdamPor\LokacjaDataBase
+Uruchomiono program ³aduj¹cy klasê bazy danych - derby.database.classpath=''
