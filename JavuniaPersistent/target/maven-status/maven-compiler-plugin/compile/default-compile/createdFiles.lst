@@ -1,0 +1,7 @@
+javuniapersistent\exceptions\PreexistingEntityException.class
+javuniapersistent\JavuniaPersistent.class
+javuniapersistent\Demo.class
+entities\PersonEntity.class
+javuniapersistent\exceptions\NonexistentEntityException.class
+entities\PersonEntity_.class
+javuniapersistent\exceptions\IllegalOrphanException.class
