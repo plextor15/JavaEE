@@ -47,4 +47,11 @@
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="NewServletTest" />
     
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">   
+        <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />        
+        <property name="url" value="jdbc:derby://localhost/komputery-db" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />            
+    </bean> 
+    
 </beans>

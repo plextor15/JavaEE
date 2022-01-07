@@ -59,23 +59,25 @@ public class LoginServlet {
     @RequestMapping("/check")
     //@RequestMapping(method = RequestMethod.POST)
     public String checkPost(User userek,    HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        int jakoKto = 0;
-System.out.println("DEBUG");//DEBUG ONLY!!!!
+        int jakoKto = 50;
+        String lolxd = "qwerty";
+        //System.out.println("DEBUG");//DEBUG ONLY!!!!
         Connection db; 
         db = DriverManager.getConnection("jdbc:derby://localhost/komputery-db", "root", "root");
         
         db.setAutoCommit(false); 
         Statement st = db.createStatement();
-System.out.println("DEBUG");//DEBUG ONLY!!!!
+        //System.out.println("DEBUG");//DEBUG ONLY!!!!
         int isNull = 0;
         try{
-            ResultSet rs = st.executeQuery("SELECT TYPE FROM USERS WHERE USERNAME='" + userek.getUsername() + "' AND PASSWORD='" + userek.getPassword() + "';");                
+            //ResultSet rs = st.executeQuery("SELECT TYPE FROM USERS WHERE USERNAME='" + userek.getUsername() + "' AND PASSWORD='" + userek.getPassword() + "';");
+            ResultSet rs = st.executeQuery("SELECT * FROM ROOT.USERS FETCH FIRST 10 ROWS ONLY;");
 
             while (rs.next()) { 
             	//System.out.println(rs.getString(1)+" "+rs.getString(2));
                 //isNull += 1;
-                
-                jakoKto = rs.getInt("TYPE");
+                lolxd = rs.getString(2);
+                jakoKto = rs.getInt(1);
                 isNull += 1;
             } 
 		
@@ -93,23 +95,24 @@ System.out.println("DEBUG");//DEBUG ONLY!!!!
         //Logika
         HttpSession session = request.getSession();
         //int x = ;
-        /*
-        if((int)session.getAttribute("user_type") == -1) return "testing_V";
         
-        if (isNull != 0){
-            if(jakoKto == 0) {//jako guest
-                session.setAttribute("user_type", 0);
-            }
-            if(jakoKto == 1) { //jako admin
-                session.setAttribute("user_type", 1);
-            }
-            if(jakoKto == 2) { //jako zarejestrowany
-                session.setAttribute("user_type", 2);
-            }
-            
-            return "glowna_V";
-        }
-        */
-        return "zlyLogin_V"; //zle logowanie
+        //if((int)session.getAttribute("user_type") == -1) return "testing_V"; //DEBUG ONLY!!!
+        
+//        if (isNull != 0){
+//            if(jakoKto == 0) {//jako guest
+//                session.setAttribute("user_type", 0);
+//            }
+//            if(jakoKto == 1) { //jako admin
+//                session.setAttribute("user_type", 1);
+//            }
+//            if(jakoKto == 2) { //jako zarejestrowany
+//                session.setAttribute("user_type", 2);
+//            }
+//            
+//            return "glowna_V";
+//        }
+        session.setAttribute("ktoryZKolei", lolxd);
+        session.setAttribute("user_type", jakoKto);
+        return "zly_login_V"; //zle logowanie
     }
 }
