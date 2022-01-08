@@ -1,9 +1,3 @@
-<%-- 
-    Document   : zly_login_V
-    Created on : Dec 29, 2021, 5:41:53 PM
-    Author     : Wolfik
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

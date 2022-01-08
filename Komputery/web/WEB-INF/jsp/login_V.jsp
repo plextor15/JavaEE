@@ -10,7 +10,7 @@
     <body>
         
         <h1>Logowanie</h1>
-        <form:form method="POST" modelAttribute="login_user" action="/Komputery/control/login/check">
+        <form:form method="POST" modelAttribute="login_user" action="/Komputery/control/login/tocheck">
             <table border="1" >
                 <tr>
                     <td><form:label path="username">Username</form:label></td>
