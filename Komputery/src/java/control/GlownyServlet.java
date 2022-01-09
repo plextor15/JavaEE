@@ -17,27 +17,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "glowna")
 //@WebServlet(name = "GlownyServlet", urlPatterns = {"/GlownyServlet"})
 public class GlownyServlet extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet GlownyServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet GlownyServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+    @RequestMapping(method = RequestMethod.GET)
+    public String glowna() {
+        return "glowna_V";
     }
 
+    @RequestMapping("/test")
+    public String testingOnly() {
+        return "testing_V";
+    }
+    
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

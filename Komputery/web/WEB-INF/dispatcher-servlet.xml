@@ -43,9 +43,11 @@
     <!--
     The index controller.
     -->
+    <!--
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="NewServletTest" />
+    -->
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">   
         <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />        

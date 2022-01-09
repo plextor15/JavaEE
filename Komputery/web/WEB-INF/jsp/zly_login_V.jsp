@@ -27,7 +27,7 @@
                 out.println(x + "\n");
             }
             
-            out.println("<br>" + session.getAttribute("ktoryZKolei") + "<br>");
+            //out.println("<br>" + session.getAttribute("ktoryZKolei") + "<br>");
         %>
     </body>
 </html>
