@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Komputerowy SHOP</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
-        <div>Aby zalogować, wciśnij poniższy link</div>
-        <a href="/Komputery/control/login">LOGOWANIE</a>
+    <style>
+        .rec01{
+            position: absolute;
+            width: 799px;
+            height: 145px;
+            background-image: linear-gradient(to right, #1f1f1f, #004466);
+            border: 7px solid #00FF19;
+            box-sizing: border-box;
+        }
+        h2 {
+            position: absolute;
+            width: 800px;
+            height: 80px;
+            font-family: Courier, Monospace;
+            font-size: 80px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #DDDDDD;
+            /*text-stroke: 4px solid #00A0E4;*/
+        }
+        #tekst {
+            position: fixed;
+            bottom: 400px;
+            right: 400px;
+            
+            text-indent: 150px;
+            text-align: justify;
+            letter-spacing: 7px;
+            color: white;
+        }
+        #grad01 {
+            background-color: #404040; /*jakby nie zadzialalo to staly kolor*/
+            background-image: linear-gradient(to bottom right, #2e2e2e 65%, #737373 125%);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+    <body id="grad01">
+        <div class="rec01">
+            <h2>KOMPUTEROWY SHOP</h2>
+        </div>
+        
+        <div id="tekst">Strona startowa<br>Aby zalogować, wciśnij poniższy link<br><br>
+            <a href="/Komputery/control/login"><b>LOGOWANIE></b>></a></div>
     </body>
 </html>

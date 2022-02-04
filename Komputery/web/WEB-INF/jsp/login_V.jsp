@@ -24,6 +24,6 @@
             <input type="submit" value="zaloguj"/>
         </form:form>
             
-        <h1>Rejestracja</h1>
+        <a href="/Komputery/control/login/rejestracja"><h1>Rejestracja</h1></a>
     </body>
 </html>

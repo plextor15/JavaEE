@@ -1,3 +1,5 @@
+//Stale zmienne zeby nie music za kazdym razem wpisywac
+
 package control;
 
 public final class WazneDane {

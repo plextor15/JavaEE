@@ -35,6 +35,12 @@ public class User {
         return this.username;
     }
     
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public String getUsername() {
         return username;
@@ -58,11 +64,11 @@ public class User {
             this.type = 0;
         }
         
-        if(type > 3) {
+//        if(type > 3) {
             this.type = type;
-        }
-        else{
-            this.type = 0;
-        }
+//        }
+//        else{
+//            this.type = 0;
+//        }
     }
 }
