@@ -38,7 +38,7 @@ public class GlownyServlet extends HttpServlet {
         String urladdress = "xzy";
         
         HttpSession session = request.getSession();
-        User userek = (User)session.getAttribute("user_logged");
+        userek = (User)session.getAttribute("user_logged");
         
         return "user_page_V";
         //return "testing_V";
