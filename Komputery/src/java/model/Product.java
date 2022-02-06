@@ -18,44 +18,30 @@ public class Product {
     private int type;   // 0 - oth, 1 - CPU, 2 - RAM, 3 - GPU, 4 - HDD/SSD
 
     
-    public String getName() {
-        return name;
-    }
+    public String getId() { return name; }
+    public void setId(int id) { this.id = id; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public double getPrice() {
-        return price;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
 
-    public int getAmount() {
-        return amount;
-    }
+    public int getAmount() { return amount; }
+    public void setAmount(int amount) { this.amount = amount; }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public int getType() {
-        return type;
-    }
-
+    public int getType() { return type; }
     public void setType(int type) {
         if(type < 0) {
             this.type = 0;
         }
         
         if(type > 4) {
-            this.type = type;
+            this.type = 0;
         }
         else{
-            this.type = 0;
+            this.type = type;
         }
     }
 }

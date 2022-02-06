@@ -60,15 +60,8 @@ public class User {
         return type;
     }
     public void setType(int type) {
-        if(type < 0) {
-            this.type = 0;
-        }
+        if(type < 0) { this.type = 0; }
         
-//        if(type > 3) {
-            this.type = type;
-//        }
-//        else{
-//            this.type = 0;
-//        }
+        this.type = type;
     }
 }

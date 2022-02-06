@@ -115,8 +115,8 @@ public class LoginServlet {
             if (type == 2){
                 session.setAttribute("user_type", 2);
             }
-            redirectURL = "glowna_V";
-            //redirectURL = "zly_login_V";
+            //redirectURL = "glowna_V";
+            redirectURL = "redirect_to_glowna";
         }
         
         return redirectURL;
