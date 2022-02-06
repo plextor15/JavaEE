@@ -18,7 +18,7 @@ public class Product {
     private int type;   // 0 - oth, 1 - CPU, 2 - RAM, 3 - GPU, 4 - HDD/SSD
 
     
-    public String getId() { return name; }
+    public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
 

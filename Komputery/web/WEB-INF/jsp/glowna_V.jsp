@@ -114,6 +114,12 @@
                 pw.print("</b>");
                 pw.print("<span class=\"tab\"></span>");
                 pw.print(product.getPrice() + " zł");
+                pw.print("<span class=\"tab\"></span>");
+                pw.print("<span class=\"tab\"></span>");
+                
+                if(user_type == 2 && product.getAmount() > 0) {
+                    pw.print("<a href=\"/Komputery/control/glowna/kupno?id=" + product.getId() + "\">KUP</a>");
+                }
                 pw.print("</h1>");
 
                 
