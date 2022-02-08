@@ -18,5 +18,7 @@
             </pre>
         </form>
         ${msg}
+        
+        <a href="/Komputery/control/login">Powrót</a>
     </body>
 </html>

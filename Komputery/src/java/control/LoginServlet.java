@@ -53,7 +53,7 @@ public class LoginServlet {
         session.setAttribute("user_logged", user);
         session.setAttribute("user_type", 0);
 
-        return "login_V";
+        return "wyloguj_V";
     }
     
     @RequestMapping(method = RequestMethod.GET)
@@ -147,10 +147,36 @@ public class LoginServlet {
     }
    
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String createUser(@RequestParam("id") int id, @RequestParam("username") String username,
-    @RequestParam("password") String password, ModelAndView mv) {
+    public String createUser(@RequestParam("id") int id, @RequestParam("username") String username, @RequestParam("password") String password, ModelAndView mv) 
+    throws ServletException, IOException, SQLException {
+//        int ostatniID = 4;
+//
+//        Connection db = DriverManager.getConnection(WazneDane.getDB(), WazneDane.logDB(), WazneDane.passDB());
+//        Statement st = db.createStatement(); 
+//        String querek = "SELECT * FROM USERS";
+//        
+//        db.setAutoCommit(false);
+//        try{
+//            ResultSet rs = st.executeQuery(querek);
+//            while (rs.next()) {
+//                User tmp = new User();
+//                ostatniID = tmp.getId();
+//            }
+//            ostatniID++;
+//		
+//            rs.close(); 
+//            db.commit(); 
+//            st.close();
+//            db.close(); 
+//        }
+//        catch(SQLException wyjatek) { 
+//            System.out.println("SQLException: " + wyjatek.getMessage());
+//            System.out.println("SQLState: " + wyjatek.getSQLState());
+//            System.out.println("VendorError: " + wyjatek.getErrorCode());
+//        }
 
         User user = new User();
+//        user.setId(ostatniID);
         user.setId(id);
         user.setUsername(username);
         user.setPassword(password);
@@ -164,7 +190,7 @@ public class LoginServlet {
             mv.addObject("msg", "Error");
         }
         //mv.setViewName("register_V");
-        mv.setViewName("testing_V");
+        //mv.setViewName("testing_V");
         
         return "register_V";            
     }
@@ -172,5 +198,5 @@ public class LoginServlet {
     @RequestMapping("/zly_login")
     public String zlyLogin(Model model, User userek, HttpServletRequest request, HttpServletResponse response) {
         return "zly_login_V";
-    } 
+    }
 }

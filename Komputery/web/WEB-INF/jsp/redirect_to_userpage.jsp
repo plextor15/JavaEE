@@ -1,4 +1,3 @@
-<%@page import="model.Product"%>
 <%@ page import = "java.io.*,java.util.*" %>
 
 <html>
@@ -12,7 +11,7 @@
       </center>
       <%
          // New location to be redirected
-         String site = new String("/Komputery/control/glowna");
+         String site = new String("/Komputery/control/glowna/userpage");
          response.setStatus(response.SC_MOVED_TEMPORARILY);
          response.setHeader("Location", site); 
       %>

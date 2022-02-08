@@ -14,7 +14,7 @@
     </head>
     <style>
         .rec01{
-            position: absolute;
+            position: static;
             width: 799px;
             height: 145px;
             background-image: linear-gradient(to right, #1f1f1f, #004466);
@@ -70,11 +70,14 @@
         
     </style>
     <body id="grad01">
-        <div class="rec01">
-            <h2>KOMPUTEROWY SHOP</h2>
-        </div>
-        <div><%
+        <%
             PrintWriter pw = response.getWriter();
+            
+            pw.println("<div class=\"rec01\">");
+            pw.println("    <h2>KOMPUTEROWY SHOP</h2>");
+            pw.println("</div>");
+            pw.println("<div>");
+            
             User userek = (User)session.getAttribute("user_logged");
             int user_type = (int)session.getAttribute("user_type");
         
@@ -91,10 +94,9 @@
             } else {
                 pw.print(userek.getUsername()); //jakby cos innego
             }
-        %></div>
-        
-        <%
             
+            pw.println("</div>");
+     
             ArrayList<Product> ListaProd = new ArrayList<>();
             ListaProd = (ArrayList<Product>)session.getAttribute("ListaProd");
             Product product = new Product();

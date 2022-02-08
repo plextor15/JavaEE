@@ -68,60 +68,60 @@
         
     </style>
     <body>
-        <h1>
-            <%
-                User user_logged = (User)session.getAttribute("user_logged");
-                out.println("Witaj " + user_logged.getUsername() + "!");
-            %>
-        </h1>
-        <br>
-        <hr>
-        <br>
-            Koszyk:<br>
         <%
             PrintWriter pw = response.getWriter();
+            User user_logged = (User)session.getAttribute("user_logged");
             
+            pw.println("<h1>");
+            pw.println("Witaj " + user_logged.getUsername() + "!");
+            pw.println("</h1><br>");
+            pw.println("<a href=\"/Komputery/control/glowna\">Powrót</a><br>");
+            pw.println("<a href=\"/Komputery/control/login/wyloguj\">Wyloguj</a><br><hr>");
+        
+
             ArrayList<Product> Koszyk = new ArrayList<>();
             Koszyk = (ArrayList<Product>)session.getAttribute("Lista_Zakupow");
             
             Product product = new Product();
             String typ = "RODZAJ";
             int xtyp = 0;
+            float Suma = 0;
             
-            for (int i = 0; i < Koszyk.size(); i++) {
-                product = Koszyk.get(i);
+            pw.print("<br>Koszyk:<br>");
+            
+            if(0 < Koszyk.size()){
+                for (int i = 0; i < Koszyk.size(); i++) {
+                    product = Koszyk.get(i);
 
-                xtyp = product.getType();
-                if(xtyp == 0) {typ = "Inne";}
-                if(xtyp == 1) {typ = "Procesor";}
-                if(xtyp == 2) {typ = "RAM";}
-                if(xtyp == 3) {typ = "Karta graficzna";}
-                if(xtyp == 4) {typ = "Nośnik danych";}
+                    xtyp = product.getType();
+                    if(xtyp == 0) {typ = "Inne";}
+                    if(xtyp == 1) {typ = "Procesor";}
+                    if(xtyp == 2) {typ = "RAM";}
+                    if(xtyp == 3) {typ = "Karta graficzna";}
+                    if(xtyp == 4) {typ = "Nośnik danych";}
                     
-                pw.println("<div id=\"product\">");
-                pw.print("<h1>");
-                pw.print("<b>");
-                pw.print(product.getName());
-                pw.print("</b>");
-                pw.print("<span class=\"tab\"></span>");
-                pw.print(product.getPrice() + " zł");
-                pw.print("<span class=\"tab\"></span>");
-                pw.print("<span class=\"tab\"></span>");
-                
-                /*pw.print("<span class=\"tab\"></span>");
-                pw.print("<h5>");
-                pw.print(typ);
-                pw.print("</h5>");*/
-                
-                pw.println("</div>");
-                pw.println("<br>");
+                    pw.println("<div id=\"product\">");
+                    pw.print("<h1>");
+                    pw.print("<b>");
+                    pw.print(product.getName());
+                    pw.print("</b>");
+                    pw.print("<span class=\"tab\"></span>");
+                    pw.print(product.getPrice() + " zł");
+                    pw.print("<span class=\"tab\"></span>");
+                    pw.print("<span class=\"tab\"></span>");
+                    
+                    pw.print("<a href=\"/Komputery/control/glowna/rezygnuj?id=" + i + "\">rezygnuj</a>");
+                    
+                    pw.println("</div>");
+                    pw.println("<br>");
+                    
+                    Suma = Suma + (float)product.getPrice();
+                }
+            } else {
+                pw.println("<p><h1>Pusto</h1></p>");
             }
 
-            String qury = "jhjh";
-            qury = (String)session.getAttribute("query");
-            pw.println(qury);
+            pw.println("<h1>W sumie do zapłaty - " + Suma + " zł</h1>");
         %>
-        <a href="/Komputery/control/glowna">Powrót</a><br>
-        <a href="/Komputrey/control/login">Wyloguj</a>
     </body>
 </html>

@@ -88,9 +88,44 @@ public class GlownyServlet extends HttpServlet {
         session.setAttribute("ListaZakupow", ListaZakupow);
 
         session.setAttribute("Lista_Zakupow", Lista_Zakupow);
+        //return "glowna_V";
+        return "redirect_to_glowna"; //zeby strona sie odswiezyla
+    }
 
-        return "glowna_V";
-        //return "redirect_to_glowna";
+    @RequestMapping(value = "/rezygnuj", method = RequestMethod.GET)
+    public String rezygnacjaKupna(Model model, @RequestParam(value="id") String ktory, HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException, SQLException{
+        HttpSession session = request.getSession();
+        int ktoryNaLiscie = Integer.valueOf(ktory); 
+        Product tmp;
+
+        ArrayList<Product> Lista_Zakupow = new ArrayList<>();
+        Lista_Zakupow = (ArrayList<Product>)session.getAttribute("Lista_Zakupow");
+
+        Connection db = DriverManager.getConnection(WazneDane.getDB(), WazneDane.logDB(), WazneDane.passDB());
+        Statement st = db.createStatement();
+        
+        tmp = Lista_Zakupow.get(ktoryNaLiscie);
+        String queryIlosc = "UPDATE PRODUCTS SET AMOUNT=AMOUNT+1 WHERE ID=" + tmp.getId();
+
+        db.setAutoCommit(true);
+        try{
+            st.executeUpdate(queryIlosc);
+            
+            db.commit(); 
+            st.close();
+            db.close(); 
+        }
+        catch(SQLException wyjatek) { 
+            System.out.println("SQLException: " + wyjatek.getMessage());
+            System.out.println("SQLState: " + wyjatek.getSQLState());
+            System.out.println("VendorError: " + wyjatek.getErrorCode());
+        }
+
+        Lista_Zakupow.remove(ktoryNaLiscie); //usuniecie z listy zakupow
+
+        session.setAttribute("Lista_Zakupow", Lista_Zakupow);
+        return "redirect_to_userpage"; //zeby strona sie odswiezyla
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -133,69 +168,13 @@ public class GlownyServlet extends HttpServlet {
         return "glowna_V";
     }
 
-
     @RequestMapping("/userpage")
-    public String userPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response) 
-    throws ServletException, IOException, SQLException{
-        //HttpSession session = request.getSession();
-        
-        //ArrayList<Product> Lista_Zakupow = new ArrayList<>();
-        //Lista_Zakupow =  (ArrayList<Product>)session.getAttribute("Lista_Zakupow");
-//        ArrayList<Integer> ListaZakupow = new ArrayList<>();
-//        ListaZakupow =  (ArrayList<Integer>)session.getAttribute("ListaZakupow");
-
-//        Connection db = DriverManager.getConnection(WazneDane.getDB(), WazneDane.logDB(), WazneDane.passDB());
-//        Statement st = db.createStatement();
-//        String query = "SELECT * FROM PRODUCTS WHERE ID=-1"; //tak zeby nic nie znalazl
-//        Product tmp = new Product();
-
-        
-//        int ileWkoszyku = ListaZakupow.size();
-//        if(ileWkoszyku > 0){
-//            ileWkoszyku--;
-//            query = "SELECT * FROM PRODUCTS WHERE";
-//
-//            for (int i = 0; i < ListaZakupow.size(); i++) {
-//                query = query + " ID=" + ListaZakupow.get(i);
-//                if(i == ileWkoszyku){
-//                    //nic nie dodaje
-//                } else {
-//                    query = query + " OR";
-//                }
-//            }
-//        }
-
-//        db.setAutoCommit(false);
-//        try{
-//            ResultSet rs = st.executeQuery(query);
-//            while (rs.next()) {
-//                tmp.setName(rs.getString(2));
-//                tmp.setPrice(rs.getDouble(3));
-//                tmp.setAmount(rs.getInt(4));
-//                tmp.setType(rs.getInt(5));
-//                Koszyk.add(tmp);
-//            } 
-//		
-//            rs.close(); 
-//            db.commit(); 
-//            st.close();
-//            db.close(); 
-//        }
-//        catch(SQLException wyjatek) { 
-//            System.out.println("SQLException: " + wyjatek.getMessage());
-//            System.out.println("SQLState: " + wyjatek.getSQLState());
-//            System.out.println("VendorError: " + wyjatek.getErrorCode());
-//        }
-
-//        session.setAttribute("Koszyk", Koszyk);
-        //session.setAttribute("query", query);//DEBUG ONLY!!!
-
+    public String userPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response){
         return "user_page_V";
     }
 
     @RequestMapping("/adminpage")
-    public String guestPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response) 
-    throws ServletException, IOException, SQLException{
+    public String guestPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response){
         return "admin_page_V";
     }
 
