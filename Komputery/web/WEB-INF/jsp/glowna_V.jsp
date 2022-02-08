@@ -56,18 +56,26 @@
             color: #DDDDDD;
             border: 4px solid #000000;
         }
-        #kup {
-            
-        }
-        #niekup {
-            
-        }
+        #kup {}
+        #niekup {}
         .tab {
             display: inline-block;
             margin-left: 50px;
         }
         
+        h1 {
+            font-weight: bold;
+            color: #DDDDDD;
+        }
+        h3 {color: #DDDDDD;}
+        h4 {color: #DDDDDD;}
+        h5 {color: #DDDDDD;}
+        h6 {color: #DDDDDD;}
         
+        a {
+            color: #6FC861;
+            font-weight: bold;
+        }
     </style>
     <body id="grad01">
         <%

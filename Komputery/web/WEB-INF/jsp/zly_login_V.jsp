@@ -27,6 +27,19 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
+        
+        h1 {
+            font-weight: bold;
+            color: #DDDDDD;
+        }
+        h3 {color: #DDDDDD;}
+        h4 {color: #DDDDDD;}
+        h5 {color: #DDDDDD;}
+        h6 {color: #DDDDDD;}
+        a {
+            color: #6FC861;
+            font-weight: bold;
+        }
     </style>
     <body id="grad01">
         <div id="zlybox">

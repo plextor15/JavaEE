@@ -42,7 +42,7 @@
             letter-spacing: 7px;
             color: white;
         }
-        #grad01 {
+        body {
             background-color: #404040; /*jakby nie zadzialalo to staly kolor*/
             background-image: linear-gradient(to bottom right, #2e2e2e 65%, #737373 125%);
             background-repeat: no-repeat;
@@ -65,7 +65,18 @@
             margin-left: 50px;
         }
         
-        
+        h1 {
+            font-weight: bold;
+            color: #DDDDDD;
+        }
+        h3 {color: #DDDDDD;}
+        h4 {color: #DDDDDD;}
+        h5 {color: #DDDDDD;}
+        h6 {color: #DDDDDD;}
+        a {
+            color: #6FC861;
+            font-weight: bold;
+        }
     </style>
     <body>
         <%
@@ -87,7 +98,7 @@
             int xtyp = 0;
             float Suma = 0;
             
-            pw.print("<br>Koszyk:<br>");
+            pw.print("<br><h3><b>Koszyk:</b></h3><br>");
             
             if(0 < Koszyk.size()){
                 for (int i = 0; i < Koszyk.size(); i++) {
