@@ -169,7 +169,37 @@ public class GlownyServlet extends HttpServlet {
     }
 
     @RequestMapping("/userpage")
-    public String userPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response){
+    public String userPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException, SQLException{
+        HttpSession session = request.getSession();
+        User user_logged = (User)session.getAttribute("user_logged");
+        String adres = "------";
+        //String adres = String.valueOf(user_logged.getId());
+        Connection db = DriverManager.getConnection(WazneDane.getDB(), WazneDane.logDB(), WazneDane.passDB());
+        Statement st = db.createStatement();
+        String querek = "SELECT * FROM ADRESSES WHERE WHO=" + user_logged.getId();
+
+        db.setAutoCommit(false);
+        try{
+            ResultSet rs = st.executeQuery(querek);
+            while (rs.next()) {
+                //Address tmp = new Address();
+                //adres = tmp.getAdres();
+                adres = rs.getString(2);
+            } 
+		
+            rs.close(); 
+            db.commit(); 
+            st.close();
+            db.close(); 
+        }
+        catch(SQLException wyjatek) { 
+            System.out.println("SQLException: " + wyjatek.getMessage());
+            System.out.println("SQLState: " + wyjatek.getSQLState());
+            System.out.println("VendorError: " + wyjatek.getErrorCode());
+        }
+
+        session.setAttribute("adres", adres);
         return "user_page_V";
     }
 

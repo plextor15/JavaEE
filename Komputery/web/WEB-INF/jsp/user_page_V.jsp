@@ -82,9 +82,11 @@
         <%
             PrintWriter pw = response.getWriter();
             User user_logged = (User)session.getAttribute("user_logged");
+            String adres = (String)session.getAttribute("adres");
             
             pw.println("<h1>");
             pw.println("Witaj " + user_logged.getUsername() + "!");
+            pw.println("<h5><br>Adres wysyłki: " + adres + "</h5>");
             pw.println("</h1><br>");
             pw.println("<a href=\"/Komputery/control/glowna\">Powrót</a><br>");
             pw.println("<a href=\"/Komputery/control/login/wyloguj\">Wyloguj</a><br><hr>");

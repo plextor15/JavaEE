@@ -90,8 +90,14 @@ public class LoginServlet {
             while (rs.next()) { 
                 type = rs.getInt(4);
                 
+                user_logged.setId(rs.getInt(1));
                 user_logged.setUsername(rs.getString(2));
                 user_logged.setType(rs.getInt(4));
+
+//                userek.setId(rs.getInt(1));
+//                userek.setUsername(rs.getString(2));
+//                userek.setPassword(rs.getString(3));
+//                userek.setType(rs.getInt(4));
                                
                 isNull += 1;
             } 
@@ -127,6 +133,8 @@ public class LoginServlet {
 
                 ArrayList<Integer> ListaZakupow = new ArrayList<>(); //zeby mogl kupowac
                 session.setAttribute("ListaZakupow", ListaZakupow);
+
+                session.setAttribute("user_logged", user_logged);
             }
 
             //redirectURL = "glowna_V";
@@ -196,7 +204,7 @@ public class LoginServlet {
     }
 
     @RequestMapping("/zly_login")
-    public String zlyLogin(Model model, User userek, HttpServletRequest request, HttpServletResponse response) {
+    public String zlyLogin(Model model, HttpServletRequest request, HttpServletResponse response) {
         return "zly_login_V";
     }
 }
