@@ -103,7 +103,7 @@
             
             for (int i = 0; i < ListaProd.size(); i++) {
                 product = ListaProd.get(i);
-            //for (Product product : ListaProd) {
+            
                 xtyp = product.getType();
                 if(xtyp == 0) {typ = "Inne";}
                 if(xtyp == 1) {typ = "Procesor";}
@@ -145,78 +145,6 @@
                 pw.println("<br>");
             }
             
-        %>
-        
-        <%
-            /*
-            Connection db = DriverManager.getConnection(WazneDane.getDB(), WazneDane.logDB(), WazneDane.passDB());
-            Statement st = db.createStatement();
-            
-            String queryAll = "SELECT * FROM PRODUCTS";
-            String querek = queryAll;   //do wykonania
-            
-            String nazwa = "NAZWA", typ = "RODZAJ";
-            double cena;
-            int ilosc, xtyp;
-            
-            db.setAutoCommit(false);
-            try{
-                ResultSet rs = st.executeQuery(querek);
-                while (rs.next()) {
-                    nazwa = rs.getString(2);
-                    cena = rs.getDouble(3);
-                    ilosc = rs.getInt(4);
-                    xtyp = rs.getInt(5);
-                    if(xtyp == 0) {typ = "Inne";}
-                    if(xtyp == 1) {typ = "Procesor";}
-                    if(xtyp == 2) {typ = "RAM";}
-                    if(xtyp == 3) {typ = "Karta graficzna";}
-                    if(xtyp == 4) {typ = "Nośnik danych";}
-                    
-                    
-                    pw.println("<div id=\"product\">");
-                    pw.print("<h1>");
-                        pw.print("<b>");
-                        pw.print(nazwa);
-                        pw.print("</b>");
-                    //pw.print("<h2>");
-                        pw.print("<span class=\"tab\"></span>");
-                        pw.print(cena + " zł");
-                    pw.print("</h1>");
-                    
-                    //pw.println("<br>");
-                        pw.print(typ);
-                        pw.print("<span class=\"tab\"></span>");
-                        if (ilosc == 0) {
-                            pw.print("<h5 style=\"color:red\">");
-                            pw.print("Niedostępne");
-                            pw.print("</h5>");
-                        }
-                        else {
-                            pw.print("<h5>");
-                            pw.print(ilosc + " szt.");
-                            pw.print("</h5>");
-                        }
-                    
-                    if(user_type == 1){
-                        
-                    }
-                    
-                    pw.println("</div>");
-                    pw.println("<br>");
-                } 
-		
-                rs.close(); 
-                db.commit(); 
-                st.close();
-                db.close(); 
-            }
-            catch(SQLException wyjatek) { 
-                System.out.println("SQLException: " + wyjatek.getMessage());
-                System.out.println("SQLState: " + wyjatek.getSQLState());
-                System.out.println("VendorError: " + wyjatek.getErrorCode());
-            }
-           */ 
         %>
     </body>
 </html>

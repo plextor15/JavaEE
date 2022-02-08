@@ -80,15 +80,17 @@
             Koszyk:<br>
         <%
             PrintWriter pw = response.getWriter();
+            
             ArrayList<Product> Koszyk = new ArrayList<>();
-            Koszyk = (ArrayList<Product>)session.getAttribute("Koszyk");
+            Koszyk = (ArrayList<Product>)session.getAttribute("Lista_Zakupow");
+            
             Product product = new Product();
             String typ = "RODZAJ";
             int xtyp = 0;
             
             for (int i = 0; i < Koszyk.size(); i++) {
                 product = Koszyk.get(i);
-            //for (Product product : ListaProd) {
+
                 xtyp = product.getType();
                 if(xtyp == 0) {typ = "Inne";}
                 if(xtyp == 1) {typ = "Procesor";}
@@ -106,22 +108,7 @@
                 pw.print("<span class=\"tab\"></span>");
                 pw.print("<span class=\"tab\"></span>");
                 
-                /*if(user_type == 2 && product.getAmount() > 0) {
-                    pw.print("<a href=\"/Komputery/control/glowna/kupno?id=" + product.getId() + "\">KUP</a>");
-                }
-                pw.print("</h1>");
-
-                
-                if (product.getAmount() == 0) {
-                    pw.print("<h5 style=\"color:red\">");
-                    pw.print("Niedostępne");
-                    pw.print("</h5>");
-                } else {
-                    pw.print("<h5>");
-                    pw.print(product.getAmount() + " szt.");
-                    pw.print("</h5>");
-                }
-                pw.print("<span class=\"tab\"></span>");
+                /*pw.print("<span class=\"tab\"></span>");
                 pw.print("<h5>");
                 pw.print(typ);
                 pw.print("</h5>");*/
@@ -130,7 +117,9 @@
                 pw.println("<br>");
             }
 
-            
+            String qury = "jhjh";
+            qury = (String)session.getAttribute("query");
+            pw.println(qury);
         %>
         <a href="/Komputery/control/glowna">Powrót</a><br>
         <a href="/Komputrey/control/login">Wyloguj</a>

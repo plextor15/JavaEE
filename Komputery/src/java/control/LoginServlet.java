@@ -1,7 +1,7 @@
 package control;
 
 import dao.UserDAO;
-import model.User;
+import model.*;
 import control.WazneDane;
 
 import org.springframework.stereotype.Controller;
@@ -121,6 +121,9 @@ public class LoginServlet {
 
             if (type == 2){
                 session.setAttribute("user_type", 2);
+
+                ArrayList<Product> Lista_Zakupow = new ArrayList<>(); //debug
+                session.setAttribute("Lista_Zakupow", Lista_Zakupow); //debug
 
                 ArrayList<Integer> ListaZakupow = new ArrayList<>(); //zeby mogl kupowac
                 session.setAttribute("ListaZakupow", ListaZakupow);
