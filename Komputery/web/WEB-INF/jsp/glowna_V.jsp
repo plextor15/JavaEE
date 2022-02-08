@@ -80,12 +80,16 @@
         
             pw.print("Zalogowano jako: ");
         
-            if(user_type != 0){
+            if(user_type == 0){
+                pw.print("<a href=\"/Komputery/control/glowna/guestpage\">");
+                pw.print(userek.getUsername());
+                pw.print("</a>");
+            } else if(user_type == 2){
                 pw.print("<a href=\"/Komputery/control/glowna/userpage\">");
                 pw.print(userek.getUsername());
                 pw.print("</a>");
             } else {
-                pw.print(userek.getUsername()); //guest
+                pw.print(userek.getUsername()); //jakby cos innego
             }
         %></div>
         

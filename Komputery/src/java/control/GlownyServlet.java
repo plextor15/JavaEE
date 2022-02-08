@@ -4,6 +4,8 @@ import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import model.*;
 import control.WazneDane;
 
+import java.io.*;
+import java.util.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -49,24 +51,22 @@ public class GlownyServlet extends HttpServlet {
         String queryAll = "UPDATE PRODUCTS SET AMOUNT=AMOUNT-1 WHERE ID=" + idek + "; SELECT * FROM PRODUCTS WHERE ID=" + idek + ";";
         String querek = "SELECT * FROM PRODUCTS WHERE ID=" + idek;
         String queryIlosc = "UPDATE PRODUCTS SET AMOUNT=AMOUNT-1 WHERE ID=" + idek;
-
-        ArrayList<Product> ListaZakupow = new ArrayList<>();
-        ListaZakupow =  (ArrayList<Product>)session.getAttribute("ListaZakupow");   
+ 
 
         //do koszyka klienta
         db.setAutoCommit(true);
         try{
-//            ResultSet rs = st.executeQuery(querek);
-//            while (rs.next()) {
-//                Product tmp = new Product();
-//                tmp.setId(rs.getInt(1));
-//                tmp.setName(rs.getString(2));
-//                tmp.setPrice(rs.getDouble(3));
-//                tmp.setAmount(rs.getInt(4));
-//                tmp.setType(rs.getInt(5));
-//                ListaZakupow.add(tmp);
-//            } 
-//            rs.close(); 
+            /*ResultSet rs = st.executeQuery(querek);
+            while (rs.next()) {
+                Product tmp = new Product();
+                tmp.setId(rs.getInt(1));
+                tmp.setName(rs.getString(2));
+                tmp.setPrice(rs.getDouble(3));
+                tmp.setAmount(rs.getInt(4));
+                tmp.setType(rs.getInt(5));
+                ListaZakupow.add(tmp);
+            } 
+            rs.close();*/ 
 
             ResultSet rs2 = st.executeQuery(queryIlosc);		
             while (rs2.next()) {}
@@ -82,6 +82,9 @@ public class GlownyServlet extends HttpServlet {
             System.out.println("VendorError: " + wyjatek.getErrorCode());
         }
 
+        ArrayList<Integer> ListaZakupow = new ArrayList<>();
+        ListaZakupow =  (ArrayList<Integer>)session.getAttribute("ListaZakupow");
+        ListaZakupow.add(Integer.valueOf(idek));
         session.setAttribute("ListaZakupow", ListaZakupow);
 
         //ilosc - 1
@@ -105,7 +108,6 @@ public class GlownyServlet extends HttpServlet {
         return "glowna_V";
         //return "redirect_to_glowna";
     }
-
 
     @RequestMapping(method = RequestMethod.GET)
     public String glowna(Model model, User userek, HttpServletRequest request, HttpServletResponse response) 
@@ -154,30 +156,40 @@ public class GlownyServlet extends HttpServlet {
     @RequestMapping("/userpage")
     public String userPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException, SQLException{
-        String urladdress = "xzy";
+        //String urladdress = "xzy";
         
         HttpSession session = request.getSession();
         //userek = (User)session.getAttribute("user_logged");
-        
-/*
+        ArrayList<Product> Koszyk = new ArrayList<>();
+        ArrayList<Integer> ListaZakupow = new ArrayList<>();
+        ListaZakupow =  (ArrayList<Integer>)session.getAttribute("ListaZakupow");
+
         Connection db = DriverManager.getConnection(WazneDane.getDB(), WazneDane.logDB(), WazneDane.passDB());
         Statement st = db.createStatement();
-            
-        String queryAll = "SELECT * FROM PRODUCTS";
-        String querek = queryAll;   //do wykonania
-        
-        ArrayList<Product> ListaProd = new ArrayList<>();
+        String query = "SELECT * FROM PRODUCTS WHERE";
         Product tmp = new Product();
-    
+
+        
+        int ileWkoszyku = ListaZakupow.size();
+        ileWkoszyku--;
+        for (int i = 0; i < ListaZakupow.size(); i++) {
+            query = query + " ID=" + ListaZakupow.get(i);
+            if(i == ileWkoszyku){
+                //nic nie dodaje
+            } else {
+                query = query + " OR";
+            }
+        }
+
         db.setAutoCommit(false);
         try{
-            ResultSet rs = st.executeQuery(querek);
+            ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 tmp.setName(rs.getString(2));
                 tmp.setPrice(rs.getDouble(3));
                 tmp.setAmount(rs.getInt(4));
                 tmp.setType(rs.getInt(5));
-                ListaProd.add(tmp);
+                Koszyk.add(tmp);
             } 
 		
             rs.close(); 
@@ -191,11 +203,21 @@ public class GlownyServlet extends HttpServlet {
             System.out.println("VendorError: " + wyjatek.getErrorCode());
         }
 
-        session.setAttribute("ListaProd", ListaProd);
-*/
+        session.setAttribute("Koszyk", Koszyk);
+
         return "user_page_V";
     }
 
+    @RequestMapping("/adminpage")
+    public String guestPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException, SQLException{
+        return "admin_page_V";
+    }
+
+    @RequestMapping("/guestpage")
+    public String guestPage(Model model, HttpServletRequest request, HttpServletResponse response){
+        return "guest_page_V";
+    }
     
     @Override
     public String getServletInfo() {

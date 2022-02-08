@@ -29,10 +29,10 @@ import org.springframework.test.web.servlet.request.*;
 import com.sun.org.apache.xml.internal.serializer.utils.StringToIntTable;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
 
 
 @Controller
@@ -41,13 +41,20 @@ public class LoginServlet {
     @Autowired
     private UserDAO userDao;
 
-    
     @RequestMapping("/test")
     public String login(Model model) {
-        //User logged = new User("guest", "guest", 0, 0)
         return "testing_V";
     }
  
+    @RequestMapping("/wyloguj")
+    public String wyloguj(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = new User("guest", "guest", 0, 0);
+        session.setAttribute("user_logged", user);
+        session.setAttribute("user_type", 0);
+
+        return "login_V";
+    }
     
     @RequestMapping(method = RequestMethod.GET)
     public String defaultform(Model model, HttpServletRequest request, HttpServletResponse response) 
@@ -60,7 +67,6 @@ public class LoginServlet {
         return "login_V";
     }
 
-    
     @RequestMapping("/tocheck")
     public String checkPost(Model model, User userek, HttpServletRequest request, HttpServletResponse response) 
     throws ServletException, IOException, SQLException {
@@ -112,9 +118,14 @@ public class LoginServlet {
             if (type == 1){
                 session.setAttribute("user_type", 1);
             }
+
             if (type == 2){
                 session.setAttribute("user_type", 2);
+
+                ArrayList<Integer> ListaZakupow = new ArrayList<>(); //zeby mogl kupowac
+                session.setAttribute("ListaZakupow", ListaZakupow);
             }
+
             //redirectURL = "glowna_V";
             redirectURL = "redirect_to_glowna";
         }
@@ -122,7 +133,6 @@ public class LoginServlet {
         return redirectURL;
     }
 
-    
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String viewUser(ModelAndView mv) {
         User user = new User();
@@ -132,8 +142,7 @@ public class LoginServlet {
                 
         return "register_V";                
     }
-
-    
+   
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String createUser(@RequestParam("id") int id, @RequestParam("username") String username,
     @RequestParam("password") String password, ModelAndView mv) {
@@ -157,7 +166,6 @@ public class LoginServlet {
         return "register_V";            
     }
 
-    
     @RequestMapping("/zly_login")
     public String zlyLogin(Model model, User userek, HttpServletRequest request, HttpServletResponse response) {
         return "zly_login_V";

@@ -11,8 +11,8 @@
          <h1>Page Redirection</h1>
       </center>
       <%
-         ArrayList<Product> ListaZakupow = new ArrayList<>();
-         session.setAttribute("ListaZakupow", ListaZakupow);
+         //ArrayList<Product> ListaZakupow = new ArrayList<>();
+         //session.setAttribute("ListaZakupow", ListaZakupow);
          
          // New location to be redirected
          String site = new String("/Komputery/control/glowna");
