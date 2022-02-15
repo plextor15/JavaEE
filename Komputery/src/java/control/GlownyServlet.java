@@ -41,7 +41,8 @@ public class GlownyServlet extends HttpServlet {
     }
     
     @RequestMapping(value = "/kupno", method = RequestMethod.GET)
-    public String glownaKupno(Model model, @RequestParam(value="id") String idek, User userek, HttpServletRequest request, HttpServletResponse response)
+//    public String glownaKupno(Model model, @RequestParam(value="id") String idek, User userek, HttpServletRequest request, HttpServletResponse response)
+    public String glownaKupno(@RequestParam(value="id") String idek, HttpServletRequest request)
     throws ServletException, IOException, SQLException{
         HttpSession session = request.getSession();
 
@@ -93,7 +94,8 @@ public class GlownyServlet extends HttpServlet {
     }
 
     @RequestMapping(value = "/rezygnuj", method = RequestMethod.GET)
-    public String rezygnacjaKupna(Model model, @RequestParam(value="id") String ktory, HttpServletRequest request, HttpServletResponse response)
+//    public String rezygnacjaKupna(Model model, @RequestParam(value="id") String ktory, HttpServletRequest request, HttpServletResponse response)
+    public String rezygnacjaKupna(@RequestParam(value="id") String ktory, HttpServletRequest request)
     throws ServletException, IOException, SQLException{
         HttpSession session = request.getSession();
         int ktoryNaLiscie = Integer.valueOf(ktory); 
@@ -129,7 +131,8 @@ public class GlownyServlet extends HttpServlet {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String glowna(Model model, User userek, HttpServletRequest request, HttpServletResponse response) 
+//    public String glowna(Model model, User userek, HttpServletRequest request, HttpServletResponse response)
+    public String glowna(HttpServletRequest request) 
     throws ServletException, IOException, SQLException{
         HttpSession session = request.getSession();
 
@@ -169,7 +172,8 @@ public class GlownyServlet extends HttpServlet {
     }
 
     @RequestMapping("/userpage")
-    public String userPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response)
+//    public String userPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response)
+    public String userPage(HttpServletRequest request)
     throws ServletException, IOException, SQLException{
         HttpSession session = request.getSession();
         User user_logged = (User)session.getAttribute("user_logged");
@@ -204,12 +208,12 @@ public class GlownyServlet extends HttpServlet {
     }
 
     @RequestMapping("/adminpage")
-    public String guestPage(Model model, User userek, HttpServletRequest request, HttpServletResponse response){
+    public String adminPage(){
         return "admin_page_V";
     }
 
     @RequestMapping("/guestpage")
-    public String guestPage(Model model, HttpServletRequest request, HttpServletResponse response){
+    public String guestPage(){
         return "guest_page_V";
     }
     

@@ -157,7 +157,7 @@ public class LoginServlet {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String createUser(@RequestParam("id") int id, @RequestParam("username") String username, @RequestParam("password") String password, ModelAndView mv) 
     throws ServletException, IOException, SQLException {
-//        int ostatniID = 4;
+//        int ostatniID = -1;
 //
 //        Connection db = DriverManager.getConnection(WazneDane.getDB(), WazneDane.logDB(), WazneDane.passDB());
 //        Statement st = db.createStatement(); 

@@ -7,5 +7,4 @@ import model.User;
 public interface UserDAO {
     public void setDataSource(DataSource dataSource);
     public int create(User user);
-    //public List<Student> read();
 }
